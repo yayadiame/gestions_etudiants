@@ -1,0 +1,126 @@
+.mes-absences{
+     margin-left: 19%;
+     width: 79.8%;
+     margin-top: 10px;
+     background-color: #fff;
+}
+.demande-absences{
+     display: flex;
+     justify-content: space-between;
+     background-color: #fff;
+     padding: 12px;
+}
+.absecesEtudiant{
+     display: flex; 
+     gap: 20px;
+}
+.absecesEtudiant button{
+     background-color: #154561;
+     color: white;
+     border-radius: 6px;
+     padding: 0 15px ;
+     border: none;
+     cursor: pointer;
+}
+.h3h3{
+     padding: 8px;
+     color: #154561;
+}
+.absencesinput{
+     width: 40%;
+     padding: 6px 8px;
+     border-radius: 8px;
+     outline: none;
+     border: 2px solid #ccc;
+     background-color: #cccccc42;
+}
+ input[type='text']:focus,
+select:focus{
+     border-color: #154561;
+     background-color: #fff;
+}
+.demande-absences select{
+     /* width: 30%; */
+     padding: 6px;
+     border-radius: 10px;
+}
+.formAbsences{
+     width: 350px;
+     position: fixed;
+     background-color: #16161656;
+       width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     display: none;
+}
+.formAbsences.show{
+     display: block;
+}
+.formAbsences form{
+      border-top: 5px solid #154561;
+     width: 350px;
+     position: relative;
+     background-color: #fff;
+     box-shadow: 0 0 5px rgb(0 0 0.8);
+     padding: 13px;
+     border-radius: 10px;
+     left: 40%;
+     top: 25%;
+     /* width: 100%;
+     height: 100%;top: 0;left: 0; */
+}
+label{
+     display: block;
+     margin-bottom: 5px;
+     /* margin: 8px; */
+}
+form input[type="text"],input[type="number"]{
+     width: 100%;
+     margin-bottom:  8px;
+     border-radius: 6px;
+     padding: 8px;
+     border:  2px solid #ccc;
+     overflow: hidden;
+}
+textarea{
+     width: 100%;
+     margin-bottom:  8px;
+     padding: 8px;
+     border:  2px solid #ccc;
+}
+form input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus{
+     border-color: #154561;
+     outline: none;
+}
+.btnDmnd{
+     display: flex;
+     justify-content: end;
+     gap: 5px;
+}
+.btnDmnd button{
+     background-color: #154561;
+     padding: 10px;
+     border-radius: 8px;
+     border: none;
+     cursor: pointer;
+     color: white;
+     margin-top: 4px;
+     cursor: pointer;
+}.btnDmnd button:nth-child(1){
+     background-color: red;
+}
+.flexDmnd{
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 10px;
+}
+.crois{
+     background-color: red;
+     padding: 5px 5px;
+     border-radius: 5px;
+     color: white;
+     cursor: pointer;
+}

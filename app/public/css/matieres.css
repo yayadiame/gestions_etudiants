@@ -1,0 +1,104 @@
+.parti_matieres{
+    margin-left: 19%;
+    width: 79.8%;
+    margin-top: 10px;
+}
+.flex-h2{
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 15px; */
+    background-color: #fff;
+    padding: 20px;
+}
+.flex-h2 h2{
+    color: #1d3557;
+}
+.new_matieres{
+    padding: 10px 12px;
+    background-color: #2b376b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.form_matieres{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    display: none;
+}
+.form_matieres.show {
+    display: block;
+}
+ .form_matieres form {
+    position: absolute;
+    width: 300px;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    border: 1px solid #e8e8e8;
+    border-top: 3px solid #1E3A8A;
+    line-height: 1.5;
+    left: 38%;
+    top: 20%;
+}
+select, input, .input, input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background: #2525253b;
+    font-size: 15px;
+    color: #333;
+    border: none;
+    outline: none;
+}
+select:focus, input:focus, .input:focus, input[type="number"]:focus {
+    border-color: #1E3A8A;
+    box-shadow: 0 0 5px rgba(30, 59, 138, 0.171);
+    background-color: #e8e8e8;
+}
+.flex_modal{
+    display: flex;
+    justify-content: space-between;
+}
+.flex_modal .crois{
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 4px 10px;
+    margin-bottom: 10px;
+}
+.flex_btn{
+    display: flex;
+    justify-content:end;
+    gap: 10px;
+}
+.btnadd{
+    padding: 10px 12px;
+    background-color: #2b376b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.btnadd:hover{
+    background-color: #1E3A8A;
+}
+.btnreset{
+    padding: 10px 12px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.btnreset:hover{
+    background-color: #ff0000;
+}

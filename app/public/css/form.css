@@ -1,0 +1,140 @@
+ *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#1d3557,#1d3557);
+}
+
+.contenair{
+    width:900px;
+    height:500px;
+    background:#fff;
+    display:flex;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.lefter_login{
+    width:50%;
+    background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+    url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.overlay{
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+
+.overlay i{
+    font-size:70px;
+    margin-bottom:20px;
+}
+
+.overlay h1{
+    margin-bottom:20px;
+    font-size:35px;
+}
+
+.overlay p{
+    font-size:17px;
+    line-height:28px;
+}
+
+form{
+    width:50%;           
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:50px;
+}
+
+form h2{
+    text-align:center;
+    margin-bottom:35px;
+    color:#1d3557;
+}
+
+.input-box{
+    display:flex;
+    align-items:center;
+    border:2px solid #ddd;
+    border-radius:10px;
+    margin-bottom:20px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.input-box:hover{
+    border-color:#1d3557;
+}
+
+.input-box i{
+    width:50px;
+    text-align:center;
+    color:#1d3557;
+    font-size:18px;
+}
+
+.input-box input{
+    width:100%;
+    padding:15px;
+    border:none;
+    outline:none;
+    font-size:16px;
+}
+
+button{
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#1d3557;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button i{
+    margin-right:8px;
+}
+
+button:hover{
+    background:#457b9d;
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+}
+
+@media(max-width:768px){
+
+    .contenair{
+        width:95%;
+        flex-direction:column;
+        height:auto;
+    }
+
+    .lefter_login{
+        width:100%;
+        height:250px;
+        display: none;
+    }
+
+    form{
+        width:100%;
+    }
+
+}
