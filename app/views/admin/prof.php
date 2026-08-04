@@ -1,6 +1,9 @@
 <?php
-require_once (__DIR__ . "../../composants/nav.php");
-require_once (__DIR__ . "../../composants/header.php");
+require_once __DIR__ . "/../composants/nav.php";
+require_once __DIR__ . "/../composants/header.php";
+require_once __DIR__ . "/../../models/prof.php";
+$profs = new Prof("", "");
+$listers = $profs->afficherProf();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -21,21 +24,19 @@ require_once (__DIR__ . "../../composants/header.php");
             <button class="addprof">Ajouter Enseignant</button>
         </div>
         <div class="form_prof">
-            <form action="">
+            <form action="../../controllers/ProfControllers.php" method="POST">
                 <div class="crois">
                     <h3>Creer Enseignant</h3>
                     <p><strong class="crois_X  btnreser">X</strong></p>
                 </div>
                 <!-- <input type="file"> -->
-                <label for="">Nom complet</label> <br>
-                <input type="text"> 
-                <label for="">Telephone</label> <br>
-                <input type="number">
-                <label for="">Email</label> <br>
-                <input type="email"> 
+                <label for="nom">Nom complet</label> <br>
+                <input id="nom" name="nom" type="text" required> 
+                <label for="email">Email</label> <br>
+                <input id="email" name="email" type="email" required> 
                 <div class="flex-prof">
-                    <button class="btnreser">Annuler</button>
-                    <button class="btnadd" type="button">Ajouter Etudiant</button>
+                    <button class="btnreser" type="button">Annuler</button>
+                    <button class="btnadd" type="submit">Ajouter Prof</button>
                 </div>
             </form>
         </div>
@@ -46,15 +47,14 @@ require_once (__DIR__ . "../../composants/header.php");
                 <th>email</th>
                 <th>action</th>
             </thead>
+            <?php foreach($listers as $values):?>
             <tr>
-                <td></td>
-                <td>yaya diallo</td>
-                <td>yayad3972@gmail.com</td>
-                <td>
-                    <button>modifier</button>
-                    <button>supprimer</button>
-                </td>
+                <td> 👤</td>
+                <td> <?= $values['nom'] ?></td>
+                <td> <?= $values['email'] ?></td>
+                <td>—</td>
             </tr>
+            <?php endforeach; ?>
         </table>
     </section>
 </body>

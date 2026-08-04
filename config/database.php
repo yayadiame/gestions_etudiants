@@ -11,10 +11,10 @@ class Database{
                 "mysql:host=" . $this->host . ";dbname=" . $this->dbname,
                 $this->user,
                 $this->password,
-                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+                // [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
             return $db;
-        } catch (\Throwable $e) {
+        } catch (PDOExeption $e) {
             echo "Erreur de connexion: " . $e->getMessage();
             return null;
         }

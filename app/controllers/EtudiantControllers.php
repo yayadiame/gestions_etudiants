@@ -34,25 +34,16 @@ class EtudiantControllers {
 
         // Vérifier si l'ajout a échoué
         if (!is_numeric($user_id)) {
-            $_SESSION["etudiant_error"] = $user_id;
+            $_SESSION["etudiant_error"] = $id_user;
             header("Location: ../views/admin/etudiant.php");
             exit();
         }
  
         // Générer le token
-        $token = bin2hex(random_bytes(32));
+        $token = bin2hex(random_bytes(16));
         $etudiant->enregistrerToken($user_id, $token);
 
-        // Construire le lien de réinitialisation
-        // $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
-        // $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-        // $port = $_SERVER['SERVER_PORT'] ?? 80;
-        // if ($port && $port != 80 && $port != 443) {
-        //     $host .= ':' . $port;
-        // }
-        // $baseDir = dirname(dirname($_SERVER['SCRIPT_NAME'])); // /gestions_etudiants/app
-        // $resetLink = $protocol . $host . $baseDir . '/views/reset-password.php?token=' . $token;
-$resetLink = "http://localhost/gestions_etudiants/views/reset-password.php?token=" . $token;
+        $resetLink = "http://localhost/gestions_etudiants/app/views/reset-password.php?token=" . $token;
         // Envoyer un email de bienvenue / de réinitialisation
         $mailMessage = "<p>Bonjour " . htmlspecialchars($nom) . ",</p>" .
             "<p>Votre compte étudiant a été créé avec succès.</p>" .
@@ -61,12 +52,12 @@ $resetLink = "http://localhost/gestions_etudiants/views/reset-password.php?token
 
         $mailResult = envoyerEmail($email, $nom, 'Bienvenue sur Gestion Étudiants - Définir votre mot de passe', $mailMessage);
 
-        if ($mailResult !== true) {
-            $_SESSION["etudiant_success"] = "Étudiant ajouté avec succès, mais l'email n'a pas pu être envoyé.";
-            $_SESSION["etudiant_error"] = $mailResult;
-        } else {
-            $_SESSION["etudiant_success"] = "Étudiant ajouté avec succès et un email contenant le lien de mot de passe a été envoyé.";
-        }
+        // if ($mailResult !== true) {
+        //     $_SESSION["etudiant_success"] = "Étudiant ajouté avec succès, mais l'email n'a pas pu être envoyé.";
+        //     $_SESSION["etudiant_error"] = $mailResult;
+        // } else {
+        //     $_SESSION["etudiant_success"] = "Étudiant ajouté avec succès et un email contenant le lien de mot de passe a été envoyé.";
+        // }
 
         header("Location: ../views/admin/etudiant.php");
         exit();

@@ -1,7 +1,11 @@
 <?php
-session_start();
-require_once (__DIR__ . "../../composants/nav.php");
-require_once (__DIR__ . "../../composants/header.php");
+// session_start();
+require_once __DIR__ . "/../composants/nav.php";
+require_once __DIR__ . "/../composants/header.php";
+require_once __DIR__ . "/../../models/etudiant.php";
+
+$etudiant = new Etudiant("", "");
+$liste = $etudiant->afficherEtudiants();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -14,17 +18,6 @@ require_once (__DIR__ . "../../composants/header.php");
 </head>
 <body>
     <section class="section_etudiant">
-        <div class="card_etudiant">
-
-        </div>
-        <?php if (!empty($_SESSION['etudiant_error'])): ?>
-            <div class="message error"><?php echo htmlspecialchars($_SESSION['etudiant_error']); ?></div>
-            <?php unset($_SESSION['etudiant_error']); ?>
-        <?php endif; ?>
-        <?php if (!empty($_SESSION['etudiant_success'])): ?>
-            <div class="message success"><?php echo htmlspecialchars($_SESSION['etudiant_success']); ?></div>
-            <?php unset($_SESSION['etudiant_success']); ?>
-        <?php endif; ?>
         <div class="filter_etudiant">
             <input type="text">
             <button class="addEtudiant">Ajouter Etudiant</button>
@@ -48,20 +41,29 @@ require_once (__DIR__ . "../../composants/header.php");
         </div>
         <table>
             <thead>
-                <th>profil</th>
-                <th>nom</th>
-                <th>email</th>
-                <th>action</th>
+                <tr>
+                    <th>profil</th>
+                    <th>nom</th>
+                    <th>email</th>
+                    <th>action</th>
+                </tr>
             </thead>
-            <tr>
-                <td></td>
-                <td>yaya diallo</td>
-                <td>yayad3972@gmail.com</td>
-                <td>
-                    <button>modifier</button>
-                    <button>supprimer</button>
-                </td>
-            </tr>
+            <tbody>
+                <?php if (!empty($liste)) : ?>
+                    <?php foreach ($liste as $e) : ?>
+                        <tr>
+                            <td>👤</td>
+                            <td><?= htmlspecialchars($e['nom'] ?? '') ?></td>
+                            <td><?= htmlspecialchars($e['email'] ?? '') ?></td>
+                            <td>—</td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <tr>
+                        <td colspan="4">Aucun étudiant trouvé.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
         </table>
     </section>
 </body>
