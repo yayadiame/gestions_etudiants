@@ -102,3 +102,300 @@ select:focus, input:focus, .input:focus, input[type="number"]:focus {
 .btnreset:hover{
     background-color: #ff0000;
 }
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+th, td{
+    padding:10px;
+    text-align:left;
+    border-bottom:1px solid #ddd;
+}
+th{
+    background-color:#2b376b;
+    color:white;
+}
+.pagination{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    margin:20px 0;
+}
+.pagination a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:34px;
+    height:34px;
+    padding:0 8px;
+    color:#2b376b;
+    text-decoration:none;
+    border:1px solid #d8dbe5;
+    border-radius:5px;
+    box-sizing:border-box;
+}
+.pagination a.active,
+.pagination a:hover,
+.pagination a:focus-visible{
+    color:white;
+    background-color:#2b376b;
+}
+.page-header {
+            /* display: flex;
+            justify-content: space-between;
+            align-items: center; */
+            /* margin-bottom: 25px; */
+            background-color: #fff;
+            padding:  20px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            margin-bottom: 6px;
+            color:  #092d64ee;
+        }
+
+        .page-header p {
+            color:  #092d64ee;
+        }
+.flex-icones{
+    display: flex;
+    gap: 12px;
+  }
+/* =========================================
+   RESPONSIVE TABLETTE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .parti_matieres {
+        margin-left: 22%;
+        width: 75%;
+    }
+
+    .flex-h2 {
+        gap: 15px;
+        align-items: center;
+    }
+
+    .flex-h2 h3 {
+        font-size: 18px;
+    }
+
+    .new_matieres {
+        white-space: nowrap;
+    }
+
+    /* Tableau */
+
+    .parti_matieres {
+        overflow-x: hidden;
+    }
+
+    .parti_matieres > table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 700px;
+    }
+
+    th,
+    td {
+        white-space: nowrap;
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .parti_matieres {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 60px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+
+    /* ==============================
+       TITRE + BOUTON
+    ============================== */
+
+    .flex-h2 {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 10px;
+
+        padding: 12px;
+    }
+
+    .flex-h2 h3 {
+        font-size: 18px;
+    }
+
+    .new_matieres {
+        width: 100%;
+        min-height: 40px;
+        font-size: 14px;
+    }
+
+
+    /* ==============================
+       TABLEAU
+    ============================== */
+
+    .parti_matieres > table {
+        display: block;
+
+        width: 100%;
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 700px;
+        margin-top: 15px;
+    }
+
+    th,
+    td {
+        padding: 9px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+
+    /* ==============================
+       MODAL
+    ============================== */
+
+    .form_matieres {
+        width: 100%;
+        height: 100%;
+
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .form_matieres form {
+        width: 100%;
+        max-width: 350px;
+
+        box-sizing: border-box;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+
+        padding: 18px;
+    }
+
+
+    /* ==============================
+       CHAMPS DU FORMULAIRE
+    ============================== */
+
+    .form_matieres form select,
+    .form_matieres form input,
+    .form_matieres form .input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+
+    /* ==============================
+       BOUTONS
+    ============================== */
+
+    .flex_btn {
+        display: flex;
+        gap: 8px;
+    }
+
+    .flex_btn button {
+        flex: 1;
+    }
+}
+
+
+/* =========================================
+   PETIT TELEPHONE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .parti_matieres {
+        padding: 8px;
+    }
+
+
+    /* TITRE */
+
+    .flex-h2 {
+        padding: 10px;
+    }
+
+    .flex-h2 h3 {
+        font-size: 16px;
+    }
+
+    .new_matieres {
+        font-size: 13px;
+    }
+
+
+    /* TABLEAU */
+
+    table {
+        min-width: 650px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+
+    /* MODAL */
+
+    .form_matieres {
+        padding: 8px;
+    }
+
+    .form_matieres form {
+        max-width: 100%;
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .flex_modal h3 {
+        font-size: 16px;
+    }
+
+    .flex_modal .crois {
+        padding: 3px 8px;
+    }
+
+    .flex_btn button {
+        font-size: 12px;
+        padding: 9px 6px;
+    }
+}

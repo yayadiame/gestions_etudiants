@@ -1,6 +1,17 @@
 <?php
+// session_start();
 require_once (__DIR__ . "../../composants/nav.php");
 require_once (__DIR__ . "../../composants/header.php");
+
+
+require_once "../../models/notes.php";
+
+
+$id_etudiant = $_SESSION["id"];
+ 
+$notesModel = new Notes("", "", "", "");
+
+$notEs = $notesModel->afficherNotes($id_etudiant);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,35 +24,36 @@ require_once (__DIR__ . "../../composants/header.php");
 </head>
 <body>
     <section class="mes_notes">
-        <h2>Consulter mes notes</h2>
-        <table>
-            <th>Matiere</th>
-            <th>Coefficient</th>
-            <th>Devoir</th>
-            <th>Examen</th>
-            <th>Moyenne</th>
+        <h1>Gestions des notes</h1>
+        <h2>Consulter mes notes </h2>
+            <table>
+                <th>Nom du matiere</th>
+                <th>devoir</th>
+                <th>Examen</th>
+                <th>Note</th>
+                <?php foreach ($notEs as $note): ?>
             <tr>
-                <td>javascript</td>
-                <td>4</td>
-                <td>6</td>
-                <td>15</td>
-                <td>11</td>
-            </tr>
-            <tr>
-                <td>css</td>
-                <td>4</td>
-                <td>5</td>
-                <td>15</td>
-                <td>13</td>
-            </tr>
-            <tr>
-                <td>algorithme</td>
-                <td>4</td>
-                <td>15</td>
-                <td>5</td>
-                <td>13</td>
-            </tr>
-        </table>
+                <td><?= htmlspecialchars($note["nom_matiere"]) ?></td>
+                <td>
+                    <?php if ($note["type_note"] === "devoir"): ?>
+                        <?= htmlspecialchars($note["note"]) ?>
+                    <?php else: ?>
+                        -
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php if ($note["type_note"] === "examen"): ?>
+                        <?= htmlspecialchars($note["note"]) ?>
+                    <?php else: ?>
+                        -
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?= htmlspecialchars($note["note"]) ?>
+                </td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
     </section>
 </body>
 </html>

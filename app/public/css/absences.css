@@ -75,7 +75,7 @@ label{
      margin-bottom: 5px;
      /* margin: 8px; */
 }
-form input[type="text"],input[type="number"]{
+form select,textarea{
      width: 100%;
      margin-bottom:  8px;
      border-radius: 6px;
@@ -89,8 +89,7 @@ textarea{
      padding: 8px;
      border:  2px solid #ccc;
 }
-form input[type="text"]:focus,
-input[type="number"]:focus,
+form select:focus,
 textarea:focus{
      border-color: #154561;
      outline: none;
@@ -123,4 +122,372 @@ textarea:focus{
      border-radius: 5px;
      color: white;
      cursor: pointer;
+}
+
+.absences-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+
+    width: 100%;
+}
+
+.absence-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 20px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+    transition: 0.3s ease;
+}
+
+.absence-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.09);
+}
+
+
+/* HEADER */
+
+.absence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.matiere-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.matiere-icon {
+    width: 45px;
+    height: 45px;
+
+    display: grid;
+    place-items: center;
+
+    background: #eff6ff;
+    border-radius: 12px;
+
+    font-size: 20px;
+}
+
+.matiere-info h3 {
+    margin: 0;
+    font-size: 17px;
+    color: #1e293b;
+}
+
+.absence-label {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+
+/* STATUT */
+
+.statut {
+    padding: 6px 12px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.statut.en_attente {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.statut.acceptee {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.statut.refusee {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+
+/* INFORMATIONS */
+
+.absence-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.info-icon {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    background: #f8fafc;
+
+    border-radius: 10px;
+}
+
+.info-item small {
+    display: block;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+
+    margin-bottom: 3px;
+}
+
+.info-item p {
+    margin: 0;
+
+    color: #334155;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* Tablette */
+@media (max-width: 1000px) {
+
+    .mes-absences {
+        margin-left: 22%;
+        width: 75%;
+    }
+
+    .absences-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .absence-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .demande-absences {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .absencesinput {
+        width: 50%;
+    }
+
+    .absecesEtudiant {
+        flex-wrap: wrap;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .mes-absences {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 60px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .h3h3 {
+        font-size: 18px;
+        padding: 8px 5px;
+    }
+
+    /* Barre de recherche + boutons */
+
+    .demande-absences {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 10px;
+    }
+
+    .absencesinput {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .absecesEtudiant {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .absecesEtudiant select,
+    .absecesEtudiant button {
+        width: 100%;
+        min-height: 40px;
+        box-sizing: border-box;
+    }
+
+
+    /* =========================
+       CARTES ABSENCES
+    ========================= */
+
+    .absences-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .absence-card {
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .absence-header {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .matiere-info h3 {
+        font-size: 15px;
+    }
+
+    .absence-label {
+        font-size: 11px;
+    }
+
+    .statut {
+        font-size: 11px;
+        padding: 5px 9px;
+    }
+
+
+    /* =========================
+       INFORMATIONS
+    ========================= */
+
+    .absence-content {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 18px;
+    }
+
+    .info-item p {
+        font-size: 13px;
+        word-break: break-word;
+    }
+
+
+    /* =========================
+       FORMULAIRE
+    ========================= */
+
+    .formAbsences {
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .formAbsences form {
+        width: 100%;
+        max-width: 350px;
+        box-sizing: border-box;
+
+        position: absolute;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+    }
+
+    form select,
+    form textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .btnDmnd {
+        justify-content: stretch;
+    }
+
+    .btnDmnd button {
+        flex: 1;
+    }
+}
+
+
+/* =========================
+   PETIT TELEPHONE
+========================= */
+
+@media (max-width: 480px) {
+
+    .mes-absences {
+        padding: 8px;
+    }
+
+    .h3h3 {
+        font-size: 16px;
+    }
+
+    .absence-card {
+        padding: 12px;
+    }
+
+    .absence-header {
+        flex-direction: column;
+    }
+
+    .statut {
+        align-self: flex-start;
+    }
+
+    .matiere-info h3 {
+        font-size: 14px;
+    }
+
+    .info-item p {
+        font-size: 12px;
+    }
+
+    .formAbsences {
+        padding: 10px;
+    }
+
+    .formAbsences form {
+        max-width: 100%;
+        padding: 12px;
+    }
+
+    .flexDmnd h3 {
+        font-size: 17px;
+    }
 }

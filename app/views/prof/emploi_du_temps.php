@@ -2,6 +2,16 @@
 // session_start();
 require_once (__DIR__ . "../../composants/nav.php");
 require_once (__DIR__ . "../../composants/header.php");
+require_once __DIR__ . "/../../models/emploi_du_temps.php";
+
+$limite = 2;
+$page = max(1, (int) ($_GET['page'] ?? 1));
+$debut = ($page - 1) * $limite;
+
+$planningModels = new Planning("", "", "", "", "", "");
+
+$plannings = $planningModels->afficherPlanning(null, $limite, $debut);
+$nombrePages = max(1, (int) ceil($planningModels->compterPlanning() / $limite));
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -30,20 +40,32 @@ require_once (__DIR__ . "../../composants/header.php");
                 <button onclick="location.reload()">Réinitialiser</button>
             </form>
         </div>
+        <div class="table-container">
         <table>
             <thead>
                 <th>Jours</th>
                 <th>Matieres</th>
                 <th>Heur</th>
+                <th>Heur</th>
                 <th>Salle</th>
             </thead>
+            <?php foreach($plannings as $Temps): ?>
             <tr>
-                <td>lundi</td>
-                <td>javascript</td>
-                <td>10h-13h</td>
-                <td>A</td>
+                <td><?= $Temps['jour'] ?></td>
+                <td><?= $Temps['matiere'] ?></td>
+                <td><?= $Temps['heure_debut'] ?></td>
+                <td><?= $Temps['heure_fin'] ?></td>
+                <td><?= $Temps['classe'] ?></td>
             </tr>
+            <?php endforeach;?>
         </table>
+        <?php if ($nombrePages > 1): ?>
+        <nav class="pagination" aria-label="Pages des emplois du temps">
+            <?php for ($numero = 1; $numero <= $nombrePages; $numero++): ?>
+                <a href="?page=<?= $numero ?>" class="<?= $numero === $page ? 'active' : '' ?>"><?= $numero ?></a>
+            <?php endfor; ?>
+        </nav>
+        <?php endif; ?>
     </section>
 </body>
 </html>

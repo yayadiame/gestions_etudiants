@@ -62,9 +62,23 @@ class EtudiantControllers {
         header("Location: ../views/admin/etudiant.php");
         exit();
     }
+
+    public function supprimerEtudiants($email) {
+        
+             $etudiant = new Etudiant(null, null);
+
+            // Ajouter dans la base et récupérer son ID
+            $user_id = $etudiant->supprimerEtudiant($email);
+            
+        header("Location: ../views/admin/etudiant.php");
+        exit();
+    }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $controller = new EtudiantControllers();
     $controller->ajouter();
+}elseif ($_SERVER['REQUEST_METHOD']==='GET' && isset($_GET['email']) && ($_GET['action']==='supprimer')) {
+    $controller = new EtudiantControllers();
+    $controller->supprimerEtudiants($_GET['email']);
 }

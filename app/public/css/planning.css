@@ -1,3 +1,36 @@
+.pagination {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination a {
+    padding: 8px 12px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    color: #333;
+    transform: none;
+    box-shadow: none;
+}
+
+.pagination a.active {
+    background: #333;
+    color: #fff;
+}
+
+.pagination a:hover {
+    background: #333;
+    color: #fff;
+    transform: none;
+    box-shadow: none;
+}
 .planning,.planning-etudiant{
     margin-left: 19%;
     width: 79.8%;
@@ -32,7 +65,7 @@
 }
 .form_planning form {
     position: absolute;
-    width: 380px;
+    width: 400px;
     padding: 25px;
     background: #ffffff;
     border-radius: 15px;
@@ -41,7 +74,7 @@
     border-top: 3px solid #1E3A8A;
     line-height: 1.5;
     left: 35%;
-    top: 20%;
+    top: 10%;
 }
 
 .form_planning form select,
@@ -181,4 +214,334 @@ th {
 }
 h3{
     color: #2b376b;
+}
+.flex-icones{
+    display: flex;
+    gap: 12px;
+  }
+/* =========================================
+   RESPONSIVE PLANNING
+========================================= */
+
+
+/* ================================
+   TABLETTES
+================================ */
+
+@media (max-width: 1000px){
+
+    .planning,
+    .planning-etudiant{
+        margin-left: 22%;
+        width: 75%;
+    }
+
+    .planning_new{
+        padding: 15px;
+        align-items: center;
+    }
+
+    .planning_new h3{
+        font-size: 18px;
+    }
+
+    .new_planning{
+        padding: 9px 10px;
+        white-space: nowrap;
+    }
+
+    /* Tableau */
+
+    .planning > table{
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .planning > table{
+        min-width: 850px;
+    }
+
+    th,
+    td{
+        white-space: nowrap;
+        font-size: 13px;
+    }
+
+
+    /* Formulaire */
+
+    .form_planning form{
+        width: 380px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 768px){
+
+    .planning,
+    .planning-etudiant{
+        margin-left: 0;
+        width: 100%;
+
+        margin-top: 60px;
+
+        padding: 10px;
+
+        box-sizing: border-box;
+    }
+
+
+    /* ============================
+       HEADER PLANNING
+    ============================ */
+
+    .planning_new{
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 10px;
+
+        padding: 12px;
+    }
+
+    .planning_new h3{
+        font-size: 17px;
+    }
+
+    .new_planning{
+        width: 100%;
+        min-height: 40px;
+    }
+
+
+    /* ============================
+       FILTRE
+    ============================ */
+
+    .filtre_flex{
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        padding: 12px;
+    }
+
+    .filter-form{
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 8px;
+
+        width: 100%;
+    }
+
+    .filter-form select{
+        width: 100%;
+        height: 40px;
+    }
+
+    .filter-form button{
+        width: 100%;
+        height: 40px;
+    }
+
+
+    /* ============================
+       TABLEAU
+    ============================ */
+
+    .planning{
+        overflow-x: hidden;
+    }
+
+    .planning > table{
+        display: block;
+
+        width: 100%;
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+
+        min-width: 850px;
+    }
+
+    th,
+    td{
+        padding: 9px 10px;
+
+        font-size: 12px;
+
+        white-space: nowrap;
+    }
+
+
+    /* ============================
+       MODAL
+    ============================ */
+
+    .form_planning{
+        padding: 10px;
+
+        box-sizing: border-box;
+    }
+
+    .form_planning form{
+        width: 100%;
+
+        max-width: 400px;
+
+        box-sizing: border-box;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+
+        padding: 18px;
+
+        max-height: 90vh;
+
+        overflow-y: auto;
+    }
+
+
+    .h3{
+        font-size: 18px;
+
+        margin-bottom: 15px;
+    }
+
+
+    /* Champs */
+
+    .form_planning form select,
+    .form_planning form input[type="time"]{
+        width: 100%;
+
+        padding: 10px;
+
+        font-size: 14px;
+
+        box-sizing: border-box;
+    }
+
+
+    /* Boutons */
+
+    .time_btn{
+        display: flex;
+
+        justify-content: stretch;
+
+        gap: 8px;
+    }
+
+    .time_btn button{
+        flex: 1;
+
+        padding: 9px;
+
+        font-size: 13px;
+    }
+}
+
+
+/* ================================
+   PETITS TELEPHONES
+================================ */
+
+@media (max-width: 480px){
+
+    .planning,
+    .planning-etudiant{
+        padding: 8px;
+
+        margin-top: 60px;
+    }
+
+
+    .planning_new{
+        padding: 10px;
+    }
+
+    .planning_new h3{
+        font-size: 15px;
+    }
+
+    .new_planning{
+        font-size: 13px;
+    }
+
+
+    /* Tableau */
+
+    .planning > table{
+        min-width: 800px;
+    }
+
+    th,
+    td{
+        padding: 7px 8px;
+
+        font-size: 11px;
+    }
+
+
+    /* Modal */
+
+    .form_planning form{
+        max-width: calc(100% - 20px);
+
+        padding: 15px;
+    }
+
+    .flex{
+        align-items: center;
+    }
+
+    .h3{
+        font-size: 16px;
+    }
+
+    .crois{
+        font-size: 16px;
+
+        height: 25px;
+
+        padding: 0 7px;
+    }
+
+
+    .form_planning form select,
+    .form_planning form input[type="time"]{
+        padding: 9px;
+
+        font-size: 13px;
+    }
+
+
+    .time_btn button{
+        font-size: 12px;
+
+        padding: 8px;
+    }
 }

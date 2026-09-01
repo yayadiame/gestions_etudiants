@@ -25,6 +25,29 @@ if (addprof && formProf) {
         });
     }
 }
+//filtrage
+const search = document.getElementById("search");
+const table = document.querySelector("table");
+
+search.addEventListener("input", function () {
+
+    const valeur = search.value.toLowerCase();
+    const lignes = table.querySelectorAll("tr");
+
+    lignes.forEach(function (ligne) {
+
+        const nom = ligne.querySelector("td");
+
+        // On ignore la ligne des titres
+        if (nom) {
+            if (nom.textContent.toLowerCase().includes(valeur)) {
+                ligne.style.display = "";
+            } else {
+                ligne.style.display = "none";
+            }
+        }
+    });
+});
 
 
 

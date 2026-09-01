@@ -14,6 +14,8 @@ class Etudiant {
         $db = new Database();
         $conn = $db->connexion();
         // Vérifier email
+         $sql = "SELECT * FROM users WHERE role = 'etudiant' ORDER BY id DESC";
+       
         $sql = "SELECT id FROM users WHERE email = :email";
         $stmt = $conn->prepare($sql);
         $stmt->execute([':email' => $this->email]);
@@ -34,7 +36,7 @@ class Etudiant {
         return $conn->lastInsertId();
     }
 
-    public function afficherEtudiants() {
+    public function afficherEtudiants($limit = null, $offset = null) {
         $db = new Database();
         $conn = $db->connexion();
 
@@ -43,10 +45,35 @@ class Etudiant {
         }
 
         $sql = "SELECT * FROM users WHERE role = 'etudiant' ORDER BY id DESC";
+
+        if ($limit !== null && $offset !== null) {
+            $sql .= " LIMIT :limit OFFSET :offset";
+        }
+
         $stmt = $conn->prepare($sql);
+
+        if ($limit !== null && $offset !== null) {
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        }
+
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function compterEtudiants() {
+        $db = new Database();
+        $conn = $db->connexion();
+
+        if ($conn === null) {
+            return 0;
+        }
+
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE role = 'etudiant'");
+        $stmt->execute();
+
+        return $stmt->fetchColumn();
     }
 
     public function enregistrerToken($id_users, $token) {
@@ -101,7 +128,53 @@ class Etudiant {
         $stmt->execute([
             ':token' => $token
         ]);
-
         return true;
     }
+
+        public function supprimerEtudiant($email){
+        $db = new Database();
+        $conn = $db->connexion();
+
+        // Récupérer l'id de l'étudiant
+        $sql = "SELECT id FROM users  WHERE email = :email  AND role = 'etudiant'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            ':email' => $email
+        ]);
+
+        $etudiant = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$etudiant) {
+            return false;
+        }
+
+        $id = $etudiant['id'];
+
+        // Supprimer les notes
+        $sql = "DELETE FROM notes WHERE id_etudiant = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            ':id' => $id
+        ]);
+
+        // Supprimer l'étudiant
+        $sql = "DELETE FROM users   WHERE id = :id   AND role = 'etudiant'";
+
+        $stmt = $conn->prepare($sql);
+
+        return $stmt->execute([
+            ':id' => $id
+        ]);
+    }
+
+    // public function supprimerEtudiant($email) {
+    //     $db = new Database();
+    //     $conn = $db->connexion();
+
+    //     $sql = "DELETE FROM users WHERE email=:email AND role = 'etudiant'";
+    //     $stmt=$conn->prepare($sql);
+    //     return $stmt->execute([
+    //         ':email' => $email
+    //     ]);
+    // }
 }

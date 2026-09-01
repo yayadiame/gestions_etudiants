@@ -121,3 +121,268 @@ th, td{
     border-radius: 5px;
     cursor: pointer;
 }
+
+/* =========================================
+   RESPONSIVE - TABLETTE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .contenair_classe {
+        margin-left: 22%;
+        width: 75%;
+    }
+
+    .filtere {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .filtere .input_filter {
+        width: 55%;
+    }
+
+    .table {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 650px;
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .contenair_classe {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 60px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+
+    /* TITRE */
+
+    .contenair_classe h1 {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .contenair_classe > div:first-child p {
+        font-size: 14px;
+    }
+
+
+    /* =====================================
+       FILTRE
+    ===================================== */
+
+    .filtere {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .filtere .input_filter {
+        width: 100%;
+        height: 38px;
+        box-sizing: border-box;
+    }
+
+    .addClasse {
+        width: 100%;
+        min-height: 38px;
+    }
+
+
+    /* =====================================
+       TABLEAU
+    ===================================== */
+
+    .table {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        width: 100%;
+        min-width: 650px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+
+    /* =====================================
+       FORMULAIRE
+    ===================================== */
+
+    .cardAjout {
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .cardAjout form {
+        width: 100%;
+        max-width: 350px;
+        box-sizing: border-box;
+        padding: 18px;
+
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+    }
+
+    .cardAjout input,
+    .cardAjout select {
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        margin: 8px 0;
+    }
+
+    .button {
+        gap: 10px;
+    }
+
+    .btnadd,
+    .btnreset {
+        flex: 1;
+        padding: 10px;
+    }
+}
+
+
+/* =========================================
+   PETIT TÉLÉPHONE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .contenair_classe {
+        padding: 8px;
+    }
+
+    .contenair_classe h1 {
+        font-size: 19px;
+    }
+
+    .contenair_classe > div:first-child p {
+        font-size: 13px;
+    }
+
+
+    /* FILTRE */
+
+    .filtere {
+        padding: 10px;
+    }
+
+    .filtere .input_filter {
+        font-size: 13px;
+    }
+
+    .addClasse {
+        font-size: 13px;
+    }
+
+
+    /* TABLE */
+
+    table {
+        min-width: 600px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+
+    /* FORMULAIRE */
+
+    .cardAjout form {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .cardAjout form h4 {
+        font-size: 15px;
+    }
+
+    .btnadd,
+    .btnreset {
+        font-size: 12px;
+        padding: 9px 6px;
+    }
+}
+
+/* la pajination  */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+}
+
+.pagination a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+
+    text-decoration: none;
+    color: #fff;
+
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: rgb(6, 38, 97);
+}
+
+.pagination a:hover {
+    /* background-color: #f1f1f1; */
+    /* color: #032647; */
+}
+
+.pagination a.active {
+    /* background-color: #032647; */
+    color: white;
+    border-color: #032647;
+}
+.page-header {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  /* margin-bottom: 25px; */
+  background-color: #fff;
+  padding:  20px;
+ }
+  .page-header h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+  color:  #092d64ee;
+ }
+  .page-header p {
+  color:  #092d64ee;
+  }
+  .flex-icones{
+    display: flex;
+    gap: 12px;
+  }

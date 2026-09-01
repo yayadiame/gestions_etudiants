@@ -1,6 +1,15 @@
 <?php
-require_once (__DIR__ . "../../composants/nav.php");
-require_once (__DIR__ . "../../composants/header.php");
+require_once __DIR__ . "/../composants/nav.php";
+require_once __DIR__ . "/../composants/header.php";
+
+require_once __DIR__ . "/../../models/mes_absences.php";
+
+$absencesModel = new Absence("", "", "");
+$absences = $absencesModel->afficherAbsences($_SESSION['id'] ?? 0);
+//matieres
+require_once __DIR__ . "/../../models/matieres.php";
+$matieresModels = new Matieres("", "", "");
+$matieres =$matieresModels-> afficherMatieres();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -28,32 +37,73 @@ require_once (__DIR__ . "../../composants/header.php");
             </div>
         </div>
         <div class="formAbsences">
-            <form action="" method="post">
+            
+            <form action="../../controllers/AbsencesControllers.php" method="POST">
+                <input type="hidden" name="id_etudiant" value="<?php echo isset($_SESSION['id']) ? htmlspecialchars($_SESSION['id']) : ''; ?>">
                 <div class="flexDmnd">
                     <h3>Demande d'absences</h3>
                     <div class="crois">X</div>
                 </div>
-                <label>Nom Complet</label>
-                <input type="text" placeholder="Ex: yaya diallo">
-                <label>Telephone</label>
-                <input type="number" placeholder="Ex: 00 000 00 00">
-                <label>Motif</label>
-                <textarea name="" id=""></textarea>
+                <label>Matieres <span style="color: red;">*</span></label>
+                <select name="id_matiere" required>
+                    <option value="">-- Sélectionnez une matière --</option>
+                    <?php if (empty($matieres)): ?>
+                        <option disabled>Aucune matière disponible</option>
+                    <?php else: ?>
+                        <?php foreach ($matieres as $matiere): ?>
+                            <option value="<?= htmlspecialchars($matiere['id']) ?>">
+                                <?= htmlspecialchars($matiere['nom']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
+                <label>Motif <span style="color: red;">*</span></label>
+                <textarea name="motif" required placeholder="Expliquez la raison de votre absences"></textarea>
                 <div class="btnDmnd">    
                     <button class="btnreset" type="reset">Annuler</button>
                     <button type="submit">Demander</button>
                 </div>
             </form>
         </div>
-        <!-- <section class="card-etudiant">
-            <div class="box">
-                <img src="" alt="">
-                <div class="box-nom">
-                    <p>nom:yaya diallo</p>
-                    <p>email</p>
+       <div class="absences-grid">
+
+    <?php foreach ($absences as $absence): ?>
+        <div class="absence-card">
+            <div class="absence-header">
+                <div class="matiere-info">
+                    <div>
+                        <h3>
+                            <?= htmlspecialchars($absence['nom_matiere']) ?>
+                        </h3>
+                        <span class="absence-label"> Demande d'absence</span>
+                    </div>
+                </div>
+                <span class="statut <?= htmlspecialchars($absence['statut']) ?>">
+                    <?= htmlspecialchars($absence['statut']) ?>
+                </span>
+            </div>
+            <div class="absence-content">
+                <div class="info-item">
+                    <div>
+                        <small>Date</small>
+                        <p>
+                            <?= htmlspecialchars($absence['date_absence']) ?>
+                        </p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div>
+                        <small>Motif</small>
+                        <p>
+                            <?= htmlspecialchars($absence['motif']) ?>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </section> -->
+        </div>
+    <?php endforeach; ?>
+
+</div>
     </section>
 </body>
 <script src="../../public/javascript/absences.js"></script>

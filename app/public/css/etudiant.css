@@ -131,3 +131,260 @@ th, td{
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
+.pagination{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    margin:20px 0;
+}
+.pagination a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:34px;
+    height:34px;
+    padding:0 8px;
+    color:#2b376b;
+    text-decoration:none;
+    border:1px solid #d8dbe5;
+    border-radius:5px;
+    box-sizing:border-box;
+}
+.pagination a.active,
+.pagination a:hover,
+.pagination a:focus-visible{
+    color:white;
+    background-color:#2b376b;
+}
+.page-header {
+            /* display: flex;
+            justify-content: space-between;
+            align-items: center; */
+            /* margin-bottom: 25px; */
+            background-color: #fff;
+            padding:  20px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            margin-bottom: 6px;
+            color:  #092d64ee;
+        }
+
+        .page-header p {
+            color:  #092d64ee;
+        }
+.flex-icones{
+    display: flex;
+    gap: 12px;
+  }
+/* =========================================
+   RESPONSIVE TABLETTE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .section_etudiant {
+        margin-left: 22%;
+        width: 75%;
+    }
+
+    .filter_etudiant {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .filter_etudiant input {
+        width: 55%;
+        box-sizing: border-box;
+    }
+
+    .table {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 650px;
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .section_etudiant {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 60px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+
+    /* ==============================
+       FILTRE
+    ============================== */
+
+    .filter_etudiant {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .filter_etudiant input {
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+    }
+
+    .addEtudiant {
+        width: 100%;
+        min-height: 40px;
+    }
+
+
+    /* ==============================
+       TABLEAU
+    ============================== */
+
+    .section_etudiant {
+        overflow-x: hidden;
+    }
+
+    .section_etudiant > table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 650px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+
+    /* ==============================
+       FORMULAIRE
+    ============================== */
+
+    .form_etudiant {
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .form_etudiant form {
+        width: 100%;
+        max-width: 350px;
+        box-sizing: border-box;
+
+        margin: 0;
+
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        padding: 18px;
+    }
+
+    .form_etudiant form input {
+        width: 100%;
+        box-sizing: border-box;
+        height: 40px;
+    }
+
+
+    /* ==============================
+       BOUTONS FORMULAIRE
+    ============================== */
+
+    .flex-etudiant {
+        display: flex;
+        gap: 8px;
+        padding: 5px 0;
+    }
+
+    .flex-etudiant .btnreser,
+    .flex-etudiant .btnadd {
+        flex: 1;
+        padding: 10px 8px;
+    }
+}
+
+
+/* =========================================
+   PETIT TELEPHONE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .section_etudiant {
+        padding: 8px;
+    }
+
+    .filter_etudiant {
+        padding: 10px;
+    }
+
+    .filter_etudiant input {
+        font-size: 13px;
+    }
+
+    .addEtudiant {
+        font-size: 13px;
+    }
+
+
+    /* TABLEAU */
+
+    table {
+        min-width: 600px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+
+    /* FORMULAIRE */
+
+    .form_etudiant {
+        padding: 10px;
+    }
+
+    .form_etudiant form {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .form_etudiant form h3 {
+        font-size: 17px;
+    }
+
+    .crois_X {
+        font-size: 16px;
+        padding: 4px 8px;
+    }
+
+    .flex-etudiant .btnreser,
+    .flex-etudiant .btnadd {
+        font-size: 12px;
+    }
+}

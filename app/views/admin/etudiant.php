@@ -5,7 +5,17 @@ require_once __DIR__ . "/../composants/header.php";
 require_once __DIR__ . "/../../models/etudiant.php";
 
 $etudiant = new Etudiant("", "");
-$liste = $etudiant->afficherEtudiants();
+$limit = 5;
+$page = max(1, (int) ($_GET['page'] ?? 1));
+$offset = ($page - 1) * $limit;
+$liste = $etudiant->afficherEtudiants($limit, $offset);
+$totalPages = max(1, (int) ceil($etudiant->compterEtudiants() / $limit));
+
+if ($page > $totalPages) {
+    $page = $totalPages;
+    $offset = ($page - 1) * $limit;
+    $liste = $etudiant->afficherEtudiants($limit, $offset);
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,8 +28,12 @@ $liste = $etudiant->afficherEtudiants();
 </head>
 <body>
     <section class="section_etudiant">
+         <div class="page-header">
+            <h1>Gestion des etudiants</h1>
+            <p>Consultez et gérez vos étudiants.</p>
+        </div>
         <div class="filter_etudiant">
-            <input type="text">
+            <input type="text" id="search" placeholder="filtrez par nom .....">
             <button class="addEtudiant">Ajouter Etudiant</button>
         </div>
         <div class="form_etudiant">
@@ -55,7 +69,10 @@ $liste = $etudiant->afficherEtudiants();
                             <td>👤</td>
                             <td><?= htmlspecialchars($e['nom'] ?? '') ?></td>
                             <td><?= htmlspecialchars($e['email'] ?? '') ?></td>
-                            <td>—</td>
+                            <td class="flex-icones">
+                                <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="../../controllers/EtudiantControllers.php?action=supprimer&email=<?= urlencode($e['email']) ?>"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else : ?>
@@ -65,6 +82,27 @@ $liste = $etudiant->afficherEtudiants();
                 <?php endif; ?>
             </tbody>
         </table>
+        <?php if ($totalPages > 1): ?>
+        <div class="pagination" aria-label="Pages des étudiants">
+            <?php if ($page > 1): ?>
+                <a href="?page=<?= $page - 1 ?>" aria-label="Page précédente">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>
+            <?php endif; ?>
+
+            <?php for ($numero = 1; $numero <= $totalPages; $numero++): ?>
+                <a href="?page=<?= $numero ?>" class="<?= $numero === $page ? 'active' : '' ?>">
+                    <?= $numero ?>
+                </a>
+            <?php endfor; ?>
+
+            <?php if ($page < $totalPages): ?>
+                <a href="?page=<?= $page + 1 ?>" aria-label="Page suivante">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
     </section>
 </body>
 <script src="../../public/javascript/etudiant.js"></script>
