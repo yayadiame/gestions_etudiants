@@ -71,16 +71,9 @@ nav ul li a:hover{
     transform:translateX(8px);
     box-shadow:0 8px 20px rgba(255,255,255,.2);
 }
-nav a:hover,
-nav a.active {
+nav ul li a.active {
     background:white;
     color:#1d3557;
-}
- a:hover{
-    background:white;
-    color:#1d3557;
-    transform:translateX(8px);
-    box-shadow:0 8px 20px rgba(255,255,255,.2);
 }
 nav ul li:last-child{
     margin-top:10px;

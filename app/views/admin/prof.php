@@ -34,7 +34,7 @@ if ($page > $totalPages) {
         </div>
         <div class="filter_prof">
             <input type="text" id="search" placeholder="filter par nom.....">
-            <button class="addprof">Ajouter Enseignant</button>
+            <button class="addprof"><i class="fa-solid fa-user-plus"></i> Ajouter Enseignant</button>
         </div>
         <div class="form_prof">
             <form action="../../controllers/ProfControllers.php" method="POST">

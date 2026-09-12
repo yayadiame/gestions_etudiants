@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 require_once (__DIR__ . "../../composants/nav.php");
 require_once (__DIR__ . "../../composants/header.php");
 
@@ -11,7 +11,7 @@ $id_etudiant = $_SESSION["id"];
  
 $notesModel = new Notes("", "", "", "");
 
-$notEs = $notesModel->afficherNotes($id_etudiant);
+$notEs = $notesModel->afficherNotesEtudiant($id_etudiant);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -24,8 +24,10 @@ $notEs = $notesModel->afficherNotes($id_etudiant);
 </head>
 <body>
     <section class="mes_notes">
-        <h1>Gestions des notes</h1>
-        <h2>Consulter mes notes </h2>
+        <div  class="page-header">
+            <h2>Gestions des notes</h2>
+            <p>Consulter mes notes </p>
+        </div>
             <table>
                 <th>Nom du matiere</th>
                 <th>devoir</th>

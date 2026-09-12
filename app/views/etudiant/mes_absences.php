@@ -65,45 +65,46 @@ $matieres =$matieresModels-> afficherMatieres();
                 </div>
             </form>
         </div>
-       <div class="absences-grid">
-
-    <?php foreach ($absences as $absence): ?>
-        <div class="absence-card">
-            <div class="absence-header">
-                <div class="matiere-info">
-                    <div>
-                        <h3>
-                            <?= htmlspecialchars($absence['nom_matiere']) ?>
-                        </h3>
-                        <span class="absence-label"> Demande d'absence</span>
+        
+    </section>
+    <section class="absencesA">
+         <div class="absences-grid">
+            <?php foreach ($absences as $absence): ?>
+                <div class="absence-card">
+                    <div class="absence-header">
+                        <div class="matiere-info">
+                            <div>
+                                <h3>
+                                    <?= htmlspecialchars($absence['nom_matiere']) ?>
+                                </h3>
+                                <span class="absence-label"> Demande d'absence</span>
+                            </div>
+                        </div>
+                        <span class="statut <?= htmlspecialchars($absence['statut']) ?>">
+                            <?= htmlspecialchars($absence['statut']) ?>
+                        </span>
+                    </div>
+                    <div class="absence-content">
+                        <div class="info-item">
+                            <div>
+                                <small>Date</small>
+                                <p>
+                                    <?= htmlspecialchars($absence['date_absence']) ?>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div>
+                                <small>Motif</small>
+                                <p>
+                                    <?= htmlspecialchars($absence['motif']) ?>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <span class="statut <?= htmlspecialchars($absence['statut']) ?>">
-                    <?= htmlspecialchars($absence['statut']) ?>
-                </span>
-            </div>
-            <div class="absence-content">
-                <div class="info-item">
-                    <div>
-                        <small>Date</small>
-                        <p>
-                            <?= htmlspecialchars($absence['date_absence']) ?>
-                        </p>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <div>
-                        <small>Motif</small>
-                        <p>
-                            <?= htmlspecialchars($absence['motif']) ?>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
-    <?php endforeach; ?>
-
-</div>
     </section>
 </body>
 <script src="../../public/javascript/absences.js"></script>

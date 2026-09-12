@@ -66,7 +66,7 @@ $page = basename($_SERVER['PHP_SELF']);
             <li>
                 <a href="../admin/profil.php"
                    class="<?= $page == 'profil.php' ? 'active' : '' ?>">
-                    <i class="fa-solid fa-id-card"></i> Parametres
+                    <i class="fa-solid fa-gear"></i> Parametres
                 </a>
             </li>
 
@@ -106,7 +106,7 @@ $page = basename($_SERVER['PHP_SELF']);
             <li>
                 <a href="../prof/profil.php"
                    class="<?= $page == 'profil.php' ? 'active' : '' ?>">
-                    <i class="fa-solid fa-user-gear"></i> Parametres
+                    <i class="fa-solid fa-gear"></i> Parametres
                 </a>
             </li>
 
@@ -146,7 +146,7 @@ $page = basename($_SERVER['PHP_SELF']);
             <li>
                 <a href="../etudiant/profil.php"
                    class="<?= $page == 'profil.php' ? 'active' : '' ?>">
-                    <i class="fa-solid fa-circle-user"></i> Parametres
+                    <i class="fa-solid fa-gear"></i> Parametres
                 </a>
             </li>
 

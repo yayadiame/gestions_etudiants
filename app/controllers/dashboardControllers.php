@@ -3,10 +3,10 @@
 require_once __DIR__ . '/../models/dashboard_admin.php';
 
 class DashboardController{
-    private DashboardAdmin $model;
+    // private DashboardAdmin $model;
+    private $model;
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->model = new DashboardAdmin();
     }
 

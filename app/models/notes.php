@@ -42,6 +42,41 @@ class Notes {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
      }
 
+      public function afficherNotesProf($id_prof) {
+          $db = new Database();
+          $conn = $db->connexion();
+
+          $sql = "SELECT notes.*, users.nom AS nom_etudiant,
+                              users.email AS email_etudiant,
+                              matiere.nom AS nom_matiere
+                     FROM notes
+                     JOIN users ON notes.id_etudiant = users.id
+                     JOIN matiere ON notes.id_matiere = matiere.id
+                     WHERE matiere.id_prof = :id_prof
+                     ORDER BY notes.id DESC";
+
+          $stmt = $conn->prepare($sql);
+          $stmt->execute([':id_prof' => $id_prof]);
+
+          return $stmt->fetchAll(PDO::FETCH_ASSOC);
+      }
+
+      public function afficherNotesEtudiant($id_etudiant) {
+          $db = new Database();
+          $conn = $db->connexion();
+
+          $sql = "SELECT notes.*, matiere.nom AS nom_matiere
+                  FROM notes
+                  JOIN matiere ON notes.id_matiere = matiere.id
+                  WHERE notes.id_etudiant = :id_etudiant
+                  ORDER BY notes.id DESC";
+
+          $stmt = $conn->prepare($sql);
+          $stmt->execute([':id_etudiant' => $id_etudiant]);
+
+          return $stmt->fetchAll(PDO::FETCH_ASSOC);
+      }
+
      public function compterNotes() {
         $db = new Database();
         $conn = $db->connexion();

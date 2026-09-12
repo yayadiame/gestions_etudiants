@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once (__DIR__ . "../../composants/nav.php");
 require_once (__DIR__ . "../../composants/header.php");
 require_once __DIR__ . "/../../models/notes.php";
@@ -11,10 +12,10 @@ $etudiants = $etudiant->afficherEtudiants();
 //matieres
 require_once __DIR__ . "/../../models/matieres.php";
 $matieresModels = new Matieres("", "", "");
-$matieres =$matieresModels-> afficherMatieres();
+$matieres =$matieresModels-> afficherMatieresProf($_SESSION['id']);
 //notes
 $notesModels = new Notes("", "", "", "");
-$notEs = $notesModels->afficherNotes();
+$notEs = $notesModels->afficherNotesProf($_SESSION['id']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">

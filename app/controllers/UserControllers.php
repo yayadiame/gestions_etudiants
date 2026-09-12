@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 require_once __DIR__ . "/../models/User.php";
@@ -16,25 +15,29 @@ class UserControllers{
         $password = trim($_POST["password"]);
 
         if (empty($email) || empty($password)) {
-            echo "Veuillez remplir tous les champs.";
-            return;
+            $_SESSION['erreur'] = "Veuillez remplir tous les champs.";
+            header("Location: ../views/auth/form.php");
+            exit();
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "Adresse email invalide.";
-            return;
+            $_SESSION['erreur'] = "Email ou mot de passe incorrect.";
+            header("Location: ../views/auth/form.php");
+            exit();
         }
 
         $user = $this->user->lecteurUser($email);
 
         if (!$user) {
-            echo "Email ou mot de passe incorrect.";
-            return;
+            $_SESSION['erreur'] = "Email ou mot de passe incorrect.";
+            header("Location: ../views/auth/form.php");
+            exit();
         }
 
         if (!password_verify($password, $user["password"])) {
-            echo "Email ou mot de passe incorrect.";
-            return;
+            $_SESSION['erreur'] = "Email ou mot de passe incorrect.";
+            header("Location: ../views/auth/form.php");
+            exit();
         }
 
         $_SESSION["id"] = $user["id"];

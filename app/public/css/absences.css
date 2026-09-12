@@ -4,6 +4,14 @@
      margin-top: 10px;
      background-color: #fff;
 }
+.absencesA{
+     margin-left: 19%;
+     width: 79.8%;
+     margin-top: 20px;
+     background-color: #fff;
+     padding: 20px;
+     
+}
 .demande-absences{
      display: flex;
      justify-content: space-between;
@@ -127,7 +135,7 @@ textarea:focus{
 .absences-grid {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 20px;
 

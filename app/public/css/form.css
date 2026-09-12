@@ -112,6 +112,19 @@ button{
 button i{
     margin-right:8px;
 }
+.password_forget {
+    text-align:right;
+    margin-bottom:20px;
+}
+ .password_forget a{
+    color:#1d3557;
+    text-decoration:none;
+    font-size:14px;
+}
+.password_forget a:hover{
+    text-decoration:underline;
+}
+
 
 button:hover{
     background:#457b9d;

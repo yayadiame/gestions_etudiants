@@ -20,12 +20,6 @@ session_start();
         </div>
     </div>
     <form action="../../controllers/UserControllers.php" method="post">
-        <?php
-        if(isset($_SESSION['erreur'])){
-            echo"veuillez remplir tous les champs ";
-            session_destroy();
-        }
-        ?>
         <h2>Connexion</h2>
         <div class="input-box">
             <i class="fa-solid fa-envelope"></i>
@@ -35,7 +29,15 @@ session_start();
             <i class="fa-solid fa-lock"></i>
             <input type="password" name="password" placeholder="Votre mot de passe" required>
         </div>
+        <span class="password_forget"><a href="../forget-password.php">Mot de passe oublié ?</a></span>
         <button type="submit"> Se connecter <i class="fa-solid fa-arrow-right"></i></button>
+        <br>
+        <?php if (isset($_SESSION['erreur'])): ?>
+            <p class="message-erreur" style="color:red; text-Align:center">
+                <?= htmlspecialchars($_SESSION['erreur']) ?>
+            </p>
+            <?php unset($_SESSION['erreur']); ?>
+        <?php endif; ?>
     </form>
 </div>
 </body>

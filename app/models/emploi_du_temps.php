@@ -72,6 +72,67 @@ class Planning {
         return (int) $stmt->fetchColumn();
     }
 
+    public function afficherPlanningProf($id_prof) {
+        $db = new Database();
+        $conn = $db->connexion();
+
+        $sql = "SELECT e.*, c.nom AS classe, m.nom AS matiere, u.nom AS professeur
+                FROM emploi_du_temps e
+                LEFT JOIN classe c ON e.id_classe = c.id
+                LEFT JOIN matiere m ON e.id_matiere = m.id
+                LEFT JOIN users u ON e.id_prof = u.id
+                WHERE e.id_prof = :id_prof
+                ORDER BY e.id DESC";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([':id_prof' => $id_prof]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function afficherPlanningEtudiant($id_etudiant, $limit = null, $offset = null) {
+        $db = new Database();
+        $conn = $db->connexion();
+
+        $sql = "SELECT e.*, c.nom AS classe, m.nom AS matiere, u.nom AS professeur
+                FROM emploi_du_temps e
+                JOIN users etudiant ON etudiant.id = :id_etudiant
+                LEFT JOIN classe c ON e.id_classe = c.id
+                LEFT JOIN matiere m ON e.id_matiere = m.id
+                LEFT JOIN users u ON e.id_prof = u.id
+                WHERE e.id_classe = etudiant.id_classe
+                ORDER BY e.id DESC";
+
+        if ($limit !== null && $offset !== null) {
+            $sql .= " LIMIT :limit OFFSET :offset";
+        }
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':id_etudiant', $id_etudiant, PDO::PARAM_INT);
+
+        if ($limit !== null && $offset !== null) {
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function compterPlanningEtudiant($id_etudiant) {
+        $db = new Database();
+        $conn = $db->connexion();
+
+        $sql = "SELECT COUNT(*)
+                FROM emploi_du_temps e
+                JOIN users etudiant ON etudiant.id = :id_etudiant
+                WHERE e.id_classe = etudiant.id_classe";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([':id_etudiant' => $id_etudiant]);
+
+        return (int) $stmt->fetchColumn();
+    }
+
     public function ajouterPlanning() {
         $db = new Database();
         $conn = $db->connexion();

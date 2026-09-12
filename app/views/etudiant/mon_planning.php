@@ -1,18 +1,19 @@
 <?php
-// session_start();
+session_start();
 
 require_once __DIR__ . "../../composants/nav.php";
 require_once __DIR__ . "../../composants/header.php";
 require_once __DIR__ . "/../../models/emploi_du_temps.php";
 
-$limite = 2;
+$limite = 4;
 $page = max(1, (int) ($_GET['page'] ?? 1));
 $debut = ($page - 1) * $limite;
 
 $planningModels = new Planning("", "", "", "", "", "");
 
-$plannings = $planningModels->afficherPlanning(null, $limite, $debut);
-$nombrePages = max(1, (int) ceil($planningModels->compterPlanning() / $limite));
+$id_etudiant = (int) ($_SESSION['id'] ?? 0);
+$plannings = $planningModels->afficherPlanningEtudiant($id_etudiant, $limite, $debut);
+$nombrePages = max(1, (int) ceil($planningModels->compterPlanningEtudiant($id_etudiant) / $limite));
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -29,7 +30,7 @@ $nombrePages = max(1, (int) ceil($planningModels->compterPlanning() / $limite));
             <h3>consulter mon emploi du temps</h3>
             <?php if (empty($plannings)): ?>
                 <p>Aucun emploi du temps trouvé pour cette classe.</p>
-
+                
             <?php else: ?>
             <form method="GET" class="filter-form">
                 <select name="matiere">

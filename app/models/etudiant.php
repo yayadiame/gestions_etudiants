@@ -4,17 +4,19 @@ require_once __DIR__ . '/../../config/database.php';
 class Etudiant {
     private $nom;
     private $email;
+    private $id_classe;
 
-    public function __construct($nom, $email) {
+    public function __construct($nom, $email, $id_classe = null) {
         $this->nom = $nom;
         $this->email = $email;
+        $this->id_classe = $id_classe;
     }
 
     public function ajouterEtudiant() {
         $db = new Database();
         $conn = $db->connexion();
         // Vérifier email
-         $sql = "SELECT * FROM users WHERE role = 'etudiant' ORDER BY id DESC";
+        //  $sql = "SELECT * FROM users WHERE role = 'etudiant' ORDER BY id DESC";
        
         $sql = "SELECT id FROM users WHERE email = :email";
         $stmt = $conn->prepare($sql);
@@ -24,13 +26,14 @@ class Etudiant {
             return "Cet email existe déjà";
         }
         // Ajouter étudiant
-        $sql = "INSERT INTO users(nom, email, role)
-                VALUES(:nom, :email, 'etudiant')";
+        $sql = "INSERT INTO users(nom, email, role, id_classe)
+                VALUES(:nom, :email, 'etudiant', :id_classe)";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute([
             ':nom' => $this->nom,
-            ':email' => $this->email
+            ':email' => $this->email,
+            ':id_classe' => $this->id_classe
         ]);
 
         return $conn->lastInsertId();
@@ -44,7 +47,11 @@ class Etudiant {
             return [];
         }
 
-        $sql = "SELECT * FROM users WHERE role = 'etudiant' ORDER BY id DESC";
+        $sql = "SELECT u.*, c.nom AS nom_classe
+                FROM users u
+                LEFT JOIN classe c ON u.id_classe = c.id
+                WHERE u.role = 'etudiant'
+                ORDER BY u.id DESC";
 
         if ($limit !== null && $offset !== null) {
             $sql .= " LIMIT :limit OFFSET :offset";
@@ -90,6 +97,23 @@ class Etudiant {
             ':id_users' => $id_users,
             ':token' => $token
         ]);
+
+    }
+
+    //pour le password oublie expliquer par chatGPT
+    public function trouverParEmail($email){
+        $db = new Database();
+        $conn = $db->connexion();
+
+        $sql = "SELECT id, nom, email
+                FROM users  WHERE email = :email";
+        $stmt = $conn->prepare($sql);
+
+        $stmt->execute([
+            ':email' => $email
+        ]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function definirMotDePasse($token, $password) {
@@ -167,6 +191,22 @@ class Etudiant {
         ]);
     }
 
+    // NOUVELLE FONCTION
+    public function exporterEtudiants() {
+        $db = new Database();
+        $conn = $db->connexion();
+
+        $sql = "SELECT u.nom, u.email, c.nom AS nom_classe
+                FROM users u
+                LEFT JOIN classe c ON u.id_classe = c.id
+                WHERE u.role = 'etudiant'
+                ORDER BY u.nom ASC";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     // public function supprimerEtudiant($email) {
     //     $db = new Database();
     //     $conn = $db->connexion();

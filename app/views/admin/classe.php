@@ -28,8 +28,8 @@ $totalPages = ceil($totalClasses / $limit);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classes</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="../../public/css/classe.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+     <link rel="stylesheet" href="../../public/css/classe.css">
 </head>
 <body>
     <div class="contenair_classe">
@@ -61,7 +61,7 @@ $totalPages = ceil($totalClasses / $limit);
         </div>
         <div class="filtere">
             <input type="text" id="search" class="input_filter" placeholder="filter par nom ...">
-            <button class="addClasse">add classes</button>
+            <button class="addClasse"><i class="fa-solid fa-school"></i>  add classes</button>
         </div>
         <div class="table">
         <table>

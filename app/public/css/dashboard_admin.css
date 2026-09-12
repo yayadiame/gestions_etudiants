@@ -106,10 +106,17 @@
         text-align: center;
         padding: 8px;
      }
-     td{
+     /* td{
         text-align: center;
         margin: 5px;
         color: #000;
+     } */
+     td{
+        text-align: center;
+        margin: 10px;
+        color: #000;
+        border-bottom: 1px solid #ccc;
+        padding: 8px;
      }
      h2{
          margin-bottom: 10px;

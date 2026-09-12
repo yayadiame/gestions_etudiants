@@ -25,11 +25,11 @@
     box-shadow:0 0 10px rgba(29,53,87,0.2);
 }
 .addprof{
-    padding: 5px 10px;
+    padding: 10px 10px;
     background-color: #2b376b;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
 }
 .form_prof{

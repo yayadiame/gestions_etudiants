@@ -56,6 +56,16 @@ class Matieres {
         return $stmt->fetchColumn();
     }
 
+    public function afficherMatieresProf($id_prof){
+        $db = new Database();
+        $conn = $db->connexion();
+
+        $stmt = $conn->prepare("SELECT * FROM matiere WHERE id_prof = :id_prof ORDER BY nom ASC");
+        $stmt->execute([':id_prof' => $id_prof]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getErreur(){
         return $this->erreur;
     }

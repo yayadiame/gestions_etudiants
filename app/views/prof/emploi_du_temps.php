@@ -1,17 +1,18 @@
 <?php
-// session_start();
+session_start();
 require_once (__DIR__ . "../../composants/nav.php");
 require_once (__DIR__ . "../../composants/header.php");
 require_once __DIR__ . "/../../models/emploi_du_temps.php";
 
-$limite = 2;
+$limite = 4;
 $page = max(1, (int) ($_GET['page'] ?? 1));
 $debut = ($page - 1) * $limite;
 
 $planningModels = new Planning("", "", "", "", "", "");
 
-$plannings = $planningModels->afficherPlanning(null, $limite, $debut);
-$nombrePages = max(1, (int) ceil($planningModels->compterPlanning() / $limite));
+$plannings = $planningModels->afficherPlanningProf($_SESSION['id']);
+$nombrePages = max(1, (int) ceil(count($plannings) / $limite));
+$plannings = array_slice($plannings, $debut, $limite);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -37,7 +38,7 @@ $nombrePages = max(1, (int) ceil($planningModels->compterPlanning() / $limite));
                     <option value="3">Samedi</option>
                 </select>
                 <button type="submit"> Filtrer</button>
-                <button onclick="location.reload()">Réinitialiser</button>
+                <button onclick="location.reload()"><i class="fa-solid fa-arrows-rotate"></i> Réinitialiser</button>
             </form>
         </div>
         <div class="table-container">

@@ -44,7 +44,7 @@ if ($page > $totalPages) {
         </div>
         <div class="filtres_notes">
             <input type="text" id="search" placeholder=" filtrer par .......">
-            <button id="btnAdd">Creer Notes</button>
+            <button id="btnAdd"><i class="fa-solid fa-file-pen"></i> Creer Notes</button>
         </div>
         <div class="form_notes">
             <form action="../../controllers/NotesControllers.php" method="post">

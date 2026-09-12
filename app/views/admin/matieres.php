@@ -8,7 +8,7 @@ $listers = $profs->afficherProf();
 //matieres
 require_once __DIR__ . "/../../models/matieres.php";
 $matieresModels = new Matieres("", "", "");
-$limit = 2;
+$limit = 4;
 $page = max(1, (int) ($_GET['page'] ?? 1));
 $offset = ($page - 1) * $limit;
 $matieres = $matieresModels->afficherMatieres($limit, $offset);
@@ -37,7 +37,7 @@ if ($page > $totalPages) {
         </div>
         <div class="flex-h2">
             <h3>Tableau des Matieres</h3>
-            <button class="new_matieres">Creer Matieres</button>
+            <button class="new_matieres"><i class="fa-solid fa-book"></i>Creer Matieres</button>
         </div>
         <div class="form_matieres">
             <form action="../../controllers/MatieresControllers.php" method="POST">

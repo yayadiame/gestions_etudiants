@@ -16,7 +16,7 @@ $classes = $classeModels->afficherClasses();
 //planning
 require_once __DIR__ . "/../../models/emploi_du_temps.php";
 $planningModels = new Planning("", "", "", "", "", "");
-$limite = 2;
+$limite = 5;
 $page = max(1, (int) ($_GET['page'] ?? 1));
 $debut = ($page - 1) * $limite;
 $plannings = $planningModels->afficherPlanning(null, $limite, $debut);

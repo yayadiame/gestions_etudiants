@@ -301,7 +301,7 @@ $matieres =$matieresModels-> afficherMatieres();
             <option value="refusee">Refusées</option>
         </select>
         <button onclick="filtrer()">Filtrer</button>
-        <button onclick="location.reload()">Recharger</button>
+        <button onclick="location.reload()"><i class="fa-solid fa-arrows-rotate"></i> Recharger</button>
     </div>
     <!-- TABLE -->
     <div class="table-container">

@@ -3,8 +3,11 @@
 require_once __DIR__ . "/../composants/nav.php";
 require_once __DIR__ . "/../composants/header.php";
 require_once __DIR__ . "/../../models/etudiant.php";
+require_once __DIR__ . "/../../models/classe.php";
 
 $etudiant = new Etudiant("", "");
+$classeModels = new Classe("", "", "");
+$classes = $classeModels->afficherClasses();
 $limit = 5;
 $page = max(1, (int) ($_GET['page'] ?? 1));
 $offset = ($page - 1) * $limit;
@@ -34,7 +37,10 @@ if ($page > $totalPages) {
         </div>
         <div class="filter_etudiant">
             <input type="text" id="search" placeholder="filtrez par nom .....">
-            <button class="addEtudiant">Ajouter Etudiant</button>
+            <div class="div-exprts">
+                <button class="addEtudiant"><i class="fa-solid fa-user-plus"></i> Ajouter Etudiant</button>
+                <button class="exports"><a class="exports" href="../../controllers/EtudiantControllers.php?action=exporter"><i class="fa-solid fa-file-export"></i> Exports</a></button>
+            </div>
         </div>
         <div class="form_etudiant">
             <form action="../../controllers/EtudiantControllers.php" method="POST">
@@ -47,6 +53,15 @@ if ($page > $totalPages) {
                 <input type="text" name="nom" required> 
                 <label for="">Email</label> <br>
                 <input type="email" name="email" required> 
+                <label>Classe</label>
+                <select name="id_classe" required>
+                    <option value=""></option>
+                    <?php foreach ($classes as $classe): ?>
+                        <option value="<?= $classe['id'] ?>">
+                            <?= htmlspecialchars($classe['nom']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
                 <div class="flex-etudiant">
                     <button class="btnreser">Annuler</button>
                     <button class="btnadd" type="submit">Ajouter Etudiant</button>
@@ -59,6 +74,7 @@ if ($page > $totalPages) {
                     <th>profil</th>
                     <th>nom</th>
                     <th>email</th>
+                    <th>Classe</th>
                     <th>action</th>
                 </tr>
             </thead>
@@ -69,9 +85,11 @@ if ($page > $totalPages) {
                             <td>👤</td>
                             <td><?= htmlspecialchars($e['nom'] ?? '') ?></td>
                             <td><?= htmlspecialchars($e['email'] ?? '') ?></td>
+                            <td><?= htmlspecialchars($e['nom_classe'] ?? '') ?></td>
                             <td class="flex-icones">
                                 <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="../../controllers/EtudiantControllers.php?action=supprimer&email=<?= urlencode($e['email']) ?>"><i class="fa-solid fa-trash-can"></i></a>
+                                <a href="../../controllers/EtudiantControllers.php?action=supprimer&email=<?= urlencode($e['email']) ?>" onclick="return confirm('Confirmer pour supprimer')">
+                                    <i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
